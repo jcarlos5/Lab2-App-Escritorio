@@ -6,6 +6,7 @@
 package CapaNegocio;
 
 import CapaDatos.clsJDBC;
+import java.sql.Date;
 import java.sql.ResultSet;
 
 /**
@@ -29,4 +30,15 @@ public class clsVenta {
         }
         return 0;
     }
+    
+    public void registrarVenta (Integer cod, float total, float subtotal, float igv, Boolean tipoComprobante, Integer codCliente, Integer tipoPago ) throws Exception{
+        strSQL = "INSERT INTO VENTA VALUES(" +cod+ ", CURRENT_DATE, "+total+" , "+subtotal+" , "+igv+" , "+ tipoComprobante+ " , false , "+ codCliente+" , "+tipoPago +" );";
+        try {
+            objConectar.ejecutarBD(strSQL);
+        } catch (Exception e) {
+            throw new Exception("Error al registrar la venta");
+        }
+    }
+    
+    
 }
